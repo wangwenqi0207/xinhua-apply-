@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1, minimum-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>参保人资格校验</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <style>
+      .topnavbarright :nth-child(1).current{
+        background: none;
+      }
+      #fullname,#idcard{
+        width:300px;
+        height:40px;
+        background:rgba(250,250,250,1);
+        border-radius:5px;
+        border:1px solid rgba(230,230,230,1);
+        font-weight:400;
+        color:#B3B3B3;
+        font-size: 14px;
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topcontainer"></div>
+    <div class="bodycontent main-body">
+      <div class="step_wrap">
+        <img
+          src="./images/step1.png"
+          alt=""
+        />
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="formbody ">
+            <form action="" method="post" class="form accessTextForm" >
+              <h2 class="h2_tt"></h2>
+              <div class="formcontent">
+                <ul class="forminfo" style="text-align:center">
+                  <li class="form-group">
+                    <label>姓名<b>*</b></label>
+                    <input
+                      id="fullname"
+                      name="fullname"
+                      type="text"
+                      class="dfinput"
+                      value=""
+                      placeholder="请输入姓名"
+                      maxlength="10"
+                    />
+                  </li>
+                  <li class="form-group">
+                    <label class="lb_2">身份证<b>*</b></label>
+                    <input
+                      id="idcard"
+                      name="idcard"
+                      type="text"
+                      class="dfinput card_input"
+                      value=""
+                      placeholder="请输入身份证号"
+                      maxlength="18"
+                    />
+                  </li>
+                </ul>
+              </div>
+              <div class="save_bar ">
+                <label style="width:150px"></label>
+                <a href="javascript:toNextStep()" class="btn">校验并下一步</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footercontainer"></div>
+    <script
+      src="./script/thirdplugins/jquery-3.3.1.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="./script/thirdplugins/jquery.cookie.js" type="text/javascript"></script>
+    <script
+      src="./script/thirdplugins/bootstrap.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="./script/js/index.js" type="text/javascript"></script>
+    <script>
+      // var queryUrl = "http://192.168.1.16:9008/insurance-intact-web/";
+      var oldOrderNo='';
+      var isReAssess='';
+        window.onload = function () {
+          setTimeout(function(){
+            $('.topnavbarright li:nth-child(2)').addClass('current').siblings().removeClass('current');
+          },100);
+          console.log(window.location.search)
+            if(window.location.search){
+              if(window.location.search.split('=')[0]=='?oldOrderNo'){
+                $('#fullname').val($.cookie('access_apply_fullname'));
+                $('#idcard').val($.cookie('access_apply_idcard'));
+                $('#fullname').attr('disabled','disabled');
+                $('#idcard').attr('disabled','disabled');
+                isReAssess=1;
+                oldOrderNo=window.location.search.split('=')[1];
+              }else{
+                 oldOrderNo='';
+                isReAssess='';
+
+              }
+            }else{
+              $.cookie('isReAccess',null,{expires:-1,path:'/'});
+              $.cookie('oldOrderNo',null,{expires:-1,path:'/'});
+            }
+          };
+          function generateUUID() {
+              var d = new Date().getTime();
+              if (window.performance && typeof window.performance.now === "function") {
+                d += performance.now(); //use high-precision timer if available
+              }
+              var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (d + Math.random() * 16) % 16 | 0;
+                d = Math.floor(d / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+              });
+              return uuid;
+            }
+            function getNowFormatDate() {
+                var date = new Date();
+                var seperator1 = "-";
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                  month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                  strDate = "0" + strDate;
+                }
+                var currentdate = year + seperator1 + month + seperator1 + strDate;
+                return currentdate;
+              }
+
+          function toNextStep() {
+              var fullname = $('#fullname').val();
+              var idcard = $('#idcard').val();
+              var data = {
+                "fullname":fullname,
+                "idcard":idcard,
+                "isReAssess":isReAssess
+              };
+              if (!fullname) {
+                tip('请输入姓名');
+                return 0;
+              }
+
+              if (!idcard) {
+                tip('请输入身份证号');
+                return 0;
+              }
+              var UUID=generateUUID();
+              if ($.cookie('loginName')) {
+                $.ajax({
+                  type: "POST",
+                  url: queryUrl+"/auth/identityCheck?oldOrderNo="+oldOrderNo,
+                  contentType: "application/json; charset=utf-8",
+                  data: JSON.stringify(data),
+                  dataType: "json",
+                  xhrFields: {
+                    withCredentials: true
+                  },
+                  crossDomain: true,
+                }).done(function (res) {
+                  // console.log(res);
+                  // console.log(typeof(res));
+                  if (res.resultCode == "000000") {
+                    // window.location.href='./access_apply_two.html'
+                    $.cookie('access_apply_fullname', fullname, { path: '/' });
+                    $.cookie('access_apply_idcard', idcard, { path: '/' });
+                    $.cookie('_PRE_UUID_',UUID,{path:'/'});
+                    window.location.href='./access_apply_two.html'
+                  } else {
+                    tip(res.resultMsg);
+                  }
+                });
+              } else {
+                location.reload();
+              }
+            }
+    </script>
+  </body>
+</html>

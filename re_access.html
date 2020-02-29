@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1, minimum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>复评申请</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <style>
+      .topnavbarright :nth-child(1).current{
+        background: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topcontainer"></div>
+    <div class="bodycontent main-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="formbody ">
+            <form action="" method="post" class="form-inline">
+              <div class="search_box">
+                <h3>复评申请</h3>
+                  <ul class="forminfo">
+                    <li style="padding:25px 0"><label>身份证号<b>*</b></label><input id="idcard" type="text" class="dfinput" value="">
+                    </li>
+                    <li><label>&nbsp;</label><a href="javascript:queryOrder();" class="btn">查询</a></li>
+                  </ul>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footercontainer"></div>
+    <script src="./script/thirdplugins/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="./script/thirdplugins/jquery.cookie.js" type="text/javascript"></script>
+    <script src="./script/thirdplugins/bootstrap.min.js" type="text/javascript"></script>
+    <script src="./script/js/index.js" type="text/javascript"></script>
+    <script>
+      window.onload =function(){
+          setTimeout(function(){
+            $('.topnavbarright li:nth-child(2)').addClass('current').siblings().removeClass('current');
+          },100);
+        }
+        function queryOrder(){
+          var idcard=$('#idcard').val();
+          if(!idcard){
+            tip('请输入身份证号');
+            return ;
+          }
+          $.ajax({
+            type:'GET',
+            url:queryUrl+"/authed/re_assess/auth/getLastOrder?idcard="+encodeURI(idcard),
+            xhrFields: {
+              withCredentials: true
+            },
+            crossDomain: true,
+            error:function(){
+              tip('连接失败，服务出错！')
+            }
+          }).done(function(res){
+            if (res != null) {
+              if (res.status == 1) {
+                if (window.confirm("确定申请复评吗？")) {
+                  $.ajax({
+                    type:'GET',
+                    url:queryUrl+"/auth/pgsq1?oldOrderNo="+res.orderNo,
+                    xhrFields: {
+                      withCredentials: true
+                    },
+                    crossDomain: true,
+                    success:function(res){
+                      if(res.resultCode="000000"){
+                        if(res.data.isReAssess){
+                          $.cookie('access_apply_fullname', res.data.fullname, { path: '/' });
+                          $.cookie('access_apply_idcard', res.data.idcard, { path: '/' });
+                          $.cookie('oldOrderNo',res.data.oldOrderNo, { path: '/' });
+                          $.cookie('isReAccess',1,{path:'/'});
+                          window.location.href = "./access_apply_one.html?oldOrderNo="+(res.data.oldOrderNo);
+                        }
+                      }
+
+                    },
+                    error:function(){
+                      tip('连接服务器出错！')
+                    }
+                  })
+                }
+              } else {
+                tip("该身份证号码没有可复评的工单，请核实，谢谢");
+              }
+            } else {
+				tip("未查到评估工单，您可以点首次申请！");
+			}
+          });
+        }
+    </script>
+  </body>
+</html>

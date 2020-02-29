@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1, minimum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>评估查询</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <style>
+        .topnavbarright :nth-child(1).current{
+          background: none;
+        }
+        .row{
+          text-align: center;
+          vertical-align: middle;
+        }
+        .message{
+          color:rgba(0,133,234,1);
+          padding-top:20px;
+          font-size: 20px;
+          margin: auto;
+        }
+        .level_box {
+          width: 660px;
+          margin: 0 auto;
+          height: 401px;
+          background: #FAFAFA;
+          border: #E5E5E5 1px solid;
+          margin-bottom: 40px;
+          margin-top: 20px;
+          border-radius: 8px;
+          text-align: center;
+        }
+        .level6 {
+          width: 78px;
+          height: 78px;
+          text-align: center;
+          line-height: 78px;
+          display: inline-block;
+          font-size: 50px;
+          font-weight: normal;
+          border: #FC9153 5px solid;
+          color: #FC9153;
+          border-radius: 50%;
+          margin-top: 50px;
+        }
+        .f36 {
+          font-size: 36px;
+          line-height: 36px;
+          padding: 20px;
+          font-weight: normal;
+        }
+        .f16 {
+        font-size: 16px;
+        color: #999;
+        }
+        .level_box_btm {
+          margin: 0 39px;
+          border-top: #CDCDCD 1px solid;
+          margin-top: 40px;
+          text-align: left;
+          font-size: 16px;
+          color: #333;
+          padding: 20px 30px;
+          line-height: 25px;
+        }
+      </style>
+  </head>
+  <body>
+    <div class="topcontainer"></div>
+    <div class="bodycontent main-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="formbody ">
+            <form action="" method="post" class="form-inline">
+              <div class="search_box">
+                <h3>评估查询</h3>
+                  <ul class="forminfo">
+                    <li><label>参保人姓名<b>*</b></label><input id="fullName" name="fullName" type="text" class="dfinput" value=""></li>
+                    <li style="padding:25px 0"><label>身份证号<b>*</b></label><input id="idcard" type="text" class="dfinput" value="">
+                    </li>
+                    <li><label class="whiteSpace">&nbsp;</label><a href="javascript:queryOrder();" class="btn">查询</a></li>
+                  </ul>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footercontainer"></div>
+    <script src="./script/thirdplugins/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="./script/thirdplugins/jquery.cookie.js" type="text/javascript"></script>
+    <script src="./script/thirdplugins/bootstrap.min.js" type="text/javascript"></script>
+    <script src="./script/js/index.js" type="text/javascript"></script>
+    <script>
+        window.onload=function(){
+          setTimeout(function(){
+            $('.topnavbarright li:nth-child(3)').addClass('current').siblings().removeClass('current');
+          },50);
+        }
+        function queryOrder() {
+          var fullName=$('#fullName').val();
+          var idcard=$('#idcard').val();
+          if(!fullName){
+            tip('请输入姓名');
+            return ;
+          }else{
+              if(!idcard){
+              tip('请输入身份证号');
+              return ;
+            }
+          }
+          if (fullName && idcard) {
+            $.ajax({
+              type: 'GET',
+              url: queryUrl+"/auth/assess_query?fullName="+encodeURI(fullName)+"&idcard="+encodeURI(idcard),
+              xhrFields: {
+                withCredentials: true
+              },
+              crossDomain: true,
+              error:function(){
+                tip('请求失败，服务出错！')
+              }
+            }).done(function (res) {
+              var $html='';
+              if (res.errorCode=='0') {
+                var result=res.result[0];
+                if(result.status==1){
+                  $html= "<div class='message' >您的申请已完成，请查看评估结果。若对评估结果有异议，请在评估完成后的5个工作日内申请复评，谢谢！</div>"+
+                          "<div class='"+level_box+"'>"+
+                            "<h1 class='"+level6+"'>"+result.level+"</h1>"+
+                            "<div class='"+f36+"'>评估等级</div>"+
+                            "<div class='"+f16+"'>工单号："+result.orderNo+"</div>"+
+                            "<div class='"+f16+"'>评估完成时间："+result.completedTime+"<br>工单状态：已完成</div>"+
+                            "<div class='"+level_box_btm+"'>"+
+                                "等级说明：（附评定标准：100分为独立，75～95分为轻度依赖，50～70<br>"+
+                                "分为中度依赖，25～45分为重度依赖，0～20分为完全依赖）"+
+                            "</div>"+
+                          "</div>";
+                }else{
+                    if(result.status == 0 && result.verifiedStauts == 102){
+                    $html="<div class='message'>评估中工单系统提示：您的申请--工单号："+result.orderNo+" 资格审核不通过！</div>"
+                  }else if(result.status==9){
+                    $html="<div class='message'>评估中工单系统提示：您的申请--工单号："+result.orderNo+" 走访不通过！</div>"
+                  }else{
+                    $html="<div class='message'>评估中工单系统提示：您的申请--工单号："+result.orderNo+" 正在评估中，请耐心等待！</div>"
+                  }
+                }
+                $('.row').html($html);
+              }else{
+                tip(res.errorMsg);
+              }
+            });
+          }
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!-- header-section -->
+<nav class="navbar navbar-default" style="background: #ffffff">
+  <div
+    class=" topnavbar"
+    id="bs-example-navbar-collapse-1"
+    style="position:relative;z-index:10;width: 100%;height: 100%;"
+  >
+    <div class="logoBox">
+      <a class="" href="#" style="display:inline-block;height:56px">
+        <img
+          src="./images/logo.png"
+          alt="长期护理险评估申请系统"
+          title="长期护理险评估申请系统"
+          style="height:48px"
+        />
+      </a>
+    </div>
+    <div style="float:right;width: 660px;">
+
+    <!-- <ul class="nav navbar-nav ul-right topnavbarright">
+      <li class="current"><a href="./index.html" alt="首页"><span>首页</span></a></li>
+      <li class="dropdown">
+        <a
+          href="#"
+          class="dropdown-toggle"
+          data-toggle="dropdown"
+          alt="评估申请"
+          ><span>评估申请</span><span class="caret"></span
+        ></a>
+        <ul class="dropdown-menu" id="top-dropdown-menu">
+          <li><a href="./access_apply_one.html">首次申请</a></li>
+          <li><a href="./re_access.html">复评申请</a></li>
+        </ul>
+      </li>
+      <li><a id="access_query" href="#" alt="评估查询">评估查询</a></li>
+      <li><a id="access_order" href="#" alt="评估工单">评估工单</a></li>
+    </ul>
+    <ul style="float:right" class="ul-right txUl">
+      <li class="BtnBox" style="background:none;margin-left: 10px;">
+        <span class="loginInBtn"
+          ><em class="logionTxt" onclick="login()">登录</em></span
+        >
+        <span class="loginOutBtn"></span>
+      </li>
+    </ul> -->
+    <ul class="nav navbar-nav ul-right topnavbarright" style="width:400px">
+      <li class="current"><a href="./index.html" alt="首页"><span>首页</span></a></li>
+      <li class="dropdown">
+        <a
+          href="#"
+          data-toggle="dropdown"
+          alt="评估申请"
+          ><span>评估申请</span><span class="caret"></span
+        ></a>
+        <ul class="dropdown-menu">
+          <li><a href="./access_apply_one.html">首次申请</a></li>
+          <li><a href="./re_access.html">复评申请</a></li>
+        </ul>
+      </li>
+      <li><a id="access_query" href="#" alt="评估查询">评估查询</a></li>
+      <li><a id="access_order" href="#" alt="评估工单">评估工单</a></li>
+    </ul>
+    <ul style="float:right" class="ul-right txUl">
+      <li class="BtnBox" style="background:none;margin-left: 10px;">
+        <span class="loginInBtn"
+          ><em class="logionTxt" onclick="login()">登录</em></span
+        >
+        <span class="loginOutBtn"></span>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
+<script>
+  // var queryUrl = "http://192.168.1.187:4280/insurance-intact-web";
+  // var globalUrl = "http://192.168.1.187:4280/upload";
+  if ($.cookie("loginName")) {
+    $("#access_query").attr("href", "./access_query.html");
+    $("#access_order").attr("href", "./access_order_list.html");
+    $(".loginInBtn").hide();
+    $(".loginOutBtn").show();
+  } else {
+    $(".loginInBtn").show();
+    $(".loginOutBtn").hide();
+  }
+  $(".topnavbarright>li").on("click", function() {
+    $(this)
+      .addClass("current")
+      .siblings()
+      .removeClass("current");
+    // $(".navbar-header .navbar-toggle").addClass("collapsed");
+    if ($.cookie("loginName")) {
+      $("#access_query").attr("href", "./access_query.html");
+      $("#access_order").attr("href", "./access_order_list.html");
+    } else {
+      $(".mask").show();
+    }
+  });
+  $(".dropdown").hover(function() {
+    $(this).children(".dropdown-menu").toggle()
+  });
+  function tip(msg) {
+    var msgHtml = "<div class='msg_box'>" + msg + "</div>";
+    $("body").append(msgHtml);
+    setTimeout("closeTip()", 2000);
+  }
+  function closeTip() {
+    $(".msg_box").animate({ top: "-500px", opacity: "0" }, 1000, function() {
+      $(".msg_box").remove();
+    });
+  } 
+  $(".loginOutBtn").on("click", function() {
+    if (confirm("确定退出？")) {
+      $.ajax({
+        type: "GET",
+        url: queryUrl + "/logout",
+        success: function(res) {
+          if ((res.resultCode = "000000")) {
+          }
+          $.cookie("loginName", null, { expires: -1, path: "/" });
+          $.cookie("access_apply_fullname", null, { expires: -1, path: "/" });
+          $.cookie("access_apply_idcard", null, { expires: -1, path: "/" });
+          $(".login_btn").show();
+          $(".out_btn").hide();
+          location.reload();
+        },
+        error: function() {
+          tip('登录失败，服务器无响应！');
+          $.cookie("loginName", null, { expires: -1, path: "/" });
+          $.cookie("access_apply_fullname", null, { expires: -1, path: "/" });
+          $.cookie("access_apply_idcard", null, { expires: -1, path: "/" });
+          location.reload();
+        }
+      });
+    }
+  });
+</script>

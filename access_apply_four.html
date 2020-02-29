@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1, minimum-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>申请提交成功</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <style>
+        .success_box {
+            text-align: center;
+            padding: 100px;;
+            width: 100%;
+            margin: 0 auto;
+        }
+        #orderNo{
+          font-weight: bolder;
+          color: rgba(0,133,234,1);
+          padding-top:10px;
+          font-size:20px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="topcontainer"></div>
+    <div class="bodycontent main-body">
+      <div class="success_box">
+        <img src="./images/success.png" alt="" />
+        <h1 class="f36">提交成功</h1>
+        <div class="f20">
+          Tips: 请记住工单编号便于评估查询<br>
+          工单编号：<p id="orderNo">**************</p>
+          请等待工作人员与您联系，确认信息
+        </div>
+      </div>
+    </div>
+    <div class="footercontainer"></div>
+    <script src="./script/thirdplugins/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="./script/thirdplugins/jquery.cookie.js" type="text/javascript"></script>
+    <script src="./script/thirdplugins/bootstrap.min.js" type="text/javascript"></script>
+    <script src="./script/js/index.js" type="text/javascript"></script>
+    <script>
+        window.onload = function () {
+            setTimeout(function () {
+              $('.topnavbarright li:nth-child(2)').addClass('current').siblings().removeClass('current');
+            }, 100);
+            var orderNo = window.location.search;
+            orderNo = orderNo.split('=')[1];
+            $('#orderNo').html(orderNo);
+          }
+    </script>
+  </body>
+</html>

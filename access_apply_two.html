@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1, minimum-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>填写家庭基本信息</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/access_apply.css" />
+    <script
+      src="./script/thirdplugins/jquery-3.3.1.min.js"
+      type="text/javascript"
+    ></script>
+    <style>
+      .cityleft{
+        float: left;
+        padding-right: 10px;
+      }
+      .save_bar{
+          margin-top: 0;
+          border-top:none;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="topcontainer"></div>
+    <div class="bodycontent main-body">
+      <div class="step_wrap">
+        <img
+          src="./images/step2.png"
+          alt=""
+        />
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="formbody ">
+            <form action="" method="post" class="form-inline" id="formHomeInfo">
+              <h2 class="h2_tt">2. 填写家庭基本信息</h2>
+              <div class="">
+                <ul class="forminfo forminfo-1">
+                  <li>
+                    <label>1.姓名<b>*</b></label>
+                    <input
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      class="dfinput"
+                      value=""
+                      readonly="readonly"
+                      style="color: gray"
+                    />
+                  </li>
+                  <input
+                    id="idcard"
+                    name="idcard"
+                    type="hidden"
+                    class="dfinput"
+                    value=""
+                    readonly="readonly"
+                    style="color: gray"
+                  />
+                  <li>
+                    <label>2.性别</label>
+                    <div class="vocation">
+                      <select id="sex" name="sex" class="select2">
+                        <option value="">请选择</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                      </select>
+                    </div>
+                  </li>
+                  <li>
+                    <label>3.年龄<b>*</b></label
+                    ><input
+                      id="age"
+                      name="age"
+                      type="text"
+                      class="dfinput"
+                      value=""
+                      readonly="readonly"
+                      style="color: gray"
+                    /><i>岁</i>
+                  </li>
+                  <li>
+                    <label>4.身高</label
+                    ><input
+                      name="height"
+                      type="text"
+                      class="dfinput"
+                      value=""
+                    /><i>厘米</i>
+                  </li>
+                  <li>
+                    <label>5.体重</label
+                    ><input
+                      name="weight"
+                      type="text"
+                      class="dfinput"
+                      value=""
+                    /><i>公斤</i>
+                  </li>
+                  <li>
+                    <label>6.民族</label>
+                    <div class="vocation">
+                      <select name="nation" class="select2">
+                        <option value="">请选择</option>
+                        <option value="01">汉族</option>
+                        <option value="02">蒙古族</option>
+                        <option value="03">回族</option>
+                        <option value="04">藏族</option>
+                        <option value="05">维吾尔族</option>
+                        <option value="06">苗族</option>
+                        <option value="07">彝族</option>
+                        <option value="08">壮族</option>
+                        <option value="09">布依族</option>
+                        <option value="10">朝鲜族</option>
+                        <option value="11">满族</option>
+                        <option value="12">侗族</option>
+                        <option value="13">瑶族</option>
+                        <option value="14">白族</option>
+                        <option value="15">土家族</option>
+                        <option value="16">哈尼族</option>
+                        <option value="17">哈萨克族</option>
+                        <option value="18">傣族</option>
+                        <option value="19">黎族</option>
+                        <option value="20">傈僳族</option>
+                        <option value="21">佤族</option>
+                        <option value="22">畲族</option>
+                        <option value="23">高山族</option>
+                        <option value="24">拉祜族</option>
+                        <option value="25">水族</option>
+                        <option value="26">东乡族</option>
+                        <option value="27">纳西族</option>
+                        <option value="28">景颇族</option>
+                        <option value="29">柯尔克孜族</option>
+                        <option value="30">土族</option>
+                        <option value="31">达斡尔族</option>
+                        <option value="32">仫佬族</option>
+                        <option value="33">羌族</option>
+                        <option value="34">布朗族</option>
+                        <option value="35">撒拉族</option>
+                        <option value="36">毛难族</option>
+                        <option value="37">仡佬族</option>
+                        <option value="38">锡伯族</option>
+                        <option value="39">阿昌族</option>
+                        <option value="40">普米族</option>
+                        <option value="41">塔吉克族</option>
+                        <option value="42">怒族</option>
+                        <option value="43">乌孜别克族</option>
+                        <option value="44">俄罗斯族</option>
+                        <option value="45">鄂温克族</option>
+                        <option value="46">崩龙族</option>
+                        <option value="47">保安族</option>
+                        <option value="48">裕固族</option>
+                        <option value="49">京族</option>
+                        <option value="50">塔塔尔族</option>
+                        <option value="51">独龙族</option>
+                        <option value="52">鄂伦春族</option>
+                        <option value="53">赫哲族</option>
+                        <option value="54">门巴族</option>
+                        <option value="55">珞巴族</option>
+                        <option value="56">基诺族</option>
+                        <option value="97">其他</option>
+                        <option value="98">外国血统</option>
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="li_long">
+                    <label>7.是否为本地居民</label>
+                    <div class="vocation">
+                      <select name="localResidents" class="select2">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="2">否</option>
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="li_long">
+                    <label>8.户籍情况</label>
+                    <div class="cityleft">
+                      <select name="censusRegister" class="select2" id="huji">
+                        <option value="">请选择</option>
+                        <option value="1">城镇</option>
+                        <option value="2">农村</option>
+                        <option value="3">其他</option>
+                      </select>
+                    </div>
+                    <input
+                      name="censusRegisterOther"
+                      type="text"
+                      class="dfinput"
+                      value=""
+                      id="qthj"
+                      style="width:167px; display:none"
+                      placeholder="请填入其他户籍情况"
+                    />
+                    <script type="text/javascript">
+                      $(function() {
+                        $("#huji").change(function() {
+                          var value = $(this).val();
+                          if (value == 3) {
+                            $("#qthj").show();
+                          } else {
+                            $("#qthj").hide();
+                          }
+                        });
+                      });
+                    </script>
+                  </li>
+                </ul>
+                <ul class="forminfo forminfo-2">
+                    <li>
+                      <label class="tt_auto" >9.现在是否为民政部门认定的低保低收入人群</label>
+                        <div class="vocation cityleft">
+                        <select class="select2" name="lowIncomePeople" id="dibao">
+                          <option value="">请选择</option>
+                            <option value="1">低保</option>
+                            <option value="2">低收入</option>
+                            <option value="3">其他</option>
+                        </select>
+                        </div>
+                        <!-- <cite id="qtdb" style="display: none;">
+                          &nbsp;属性<b>*</b>&nbsp;&nbsp; -->
+                          <input name="lowIncomePeopleOther" type="text" class="dfinput" placeholder="属性" value="" id="qtdb" style="width:167px;display:none" />
+                        <!-- </cite> -->
+                        <script type="text/javascript">
+                          $(function() {
+                              $("#dibao").change(function(){
+                                  var value=$(this).val();
+                                  $("#qtdb").val("");
+                                  if(value==3){
+                                      $("#qtdb").show();
+                                      $("#qtdb").focus();
+                                  }
+                                  else{
+                                  document.getElementById('qtdb').value="";
+                                      $("#qtdb").hide();
+                                      }
+
+                              });
+                          });
+                          </script>
+                    </li>
+
+                    <li class="li_long"><label class="tt_auto">10.是否为“失独”家庭</label>
+                        <div class="cityleft">
+                        <select name="bereavedParents" class="select2" id="shidu">
+                            <option value="">请选择</option>
+                            <option value="1">否</option>
+                            <option value="2">是</option>
+                            <option value="3">其他</option>
+                        </select>
+                        </div>
+
+                        <input id="qtsd" name="bereavedParentsOther" type="text" class="dfinput" value=""  style="width:167px; display:none" />
+                        <script type="text/javascript">
+                        $(function() {
+                            $("#shidu").change(function(){
+                                var value=$(this).val();
+                                $("#qtsd").val("");
+                                if(value==3){
+                                    $("#qtsd").show();
+                                    $("#qtsd").focus();
+                                }
+                                else{
+                                  document.getElementById('qtsd').value="";
+                                    $("#qtsd").hide();
+                                    }
+
+                            });
+                        });
+                        </script>
+                    </li>
+
+                    <li class="li_long"><label>11.文化程度</label>
+                        <div class="vocation">
+                        <select name="degreeOfEducation" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1">文盲</option>
+                            <option value="2">小学</option>
+                            <option value="3">初中</option>
+                            <option value="4">高中</option>
+                            <option value="5">大学及以上</option>
+                        </select>
+                        </div>
+                    </li>
+
+                    <li><label>12.主要经济来源</label>
+                        <div class="vocation">
+                        <select name="mainEconomicSources" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1">退休金</option>
+                            <option value="2" >子女补贴</option>
+                            <option value="3" >亲友资助</option>
+                            <option value="4">其他补贴</option>
+                        </select>
+                        </div>
+                    </li>
+                    <li class="li_long"><label>13.医保类别</label>
+                        <div class="cityleft">
+                        <select name="medicalInseCategory" class="select2" id="yblb">
+                          <option value="">请选择</option>
+                            <option value="1">职工医保</option>
+                            <option value="2">城乡居民医保</option>
+                            <!-- <option value="1">职工医保</option>
+                            <option value="2">城乡居民医保</option>
+                            <option value="3">新农合</option>
+                            <option value="4">商业医疗保险</option>
+                            <option value="5">城乡居民医保</option>
+                            <option value="6">城乡居民医保</option> -->
+                        </select>
+                        </div>
+                        <input name="medicalInseCategoryOther" type="text" class="dfinput" value="" style="width:167px; display:none;" id="qtyblb" />
+                        <script type="text/javascript">
+                        $(function() {
+                            $("#yblb").change(function(){
+                                var value=$(this).val();
+                                if(value==6){
+                                    $("#qtyblb").show();
+                                }
+                                else{
+                                    $("#qtyblb").hide();
+                                    }
+
+                            });
+                        });
+                        </script>
+                    </li>
+
+                    <li class="li_long" id="regionEdit"><label>14.居住地址</label>
+                      <select name='residentialProvince' class='select2'><select>
+                      <select name='residentialCity' class='select2'><select>
+                      <select name='residentialDistrict' class='select2'><select>
+                      <!-- <select name='residentialStreet' class='select2'><select> -->
+                      <input type='hidden' class='hidden' name='regionProvince'   />
+                      <input type='hidden' class='hidden' name='regionCity' />
+                      <input type='hidden' class='hidden' name='regionDistrict' />
+                      <input type='hidden' class='hidden' name='regionStreetName' />
+                      <input type='hidden' class='hidden' name='regionStreetId' />
+                    </li>
+
+                    <li class="li_long"><label> <b>	</b></label>
+                         <input name="residentialAddress" type="text" class="dfinput" value="" style="width:400px;"/>
+                    </li>
+
+                    <li><label>15.现住场所</label>
+                        <div class="vocation">
+                        <select name="livingPlace" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1">自有产权房、私房等</option>
+                            <option value="2">各类租赁房等</option>
+                            <option value="3">养老院或类似机构</option>
+                            <option value="4">护理院或类似机构</option>
+                            <option value="5">社区卫生服务中心</option>
+                            <option value="6">医院或类似机构</option>
+                        </select>
+                        </div>
+                    </li>
+
+                    <li class="li_long"><label>16.语言使用</label>
+                        <div class="cityleft">
+                        <select name="commonLanguage" class="select2" id="language">
+                          <option value="">请选择</option>
+                            <option value="1">普通话</option>
+                            <option value="2">方言</option>
+                            <option value="3">不使用语言等其他情况</option>
+                        </select>
+                        </div>
+                        <input name="commonLanguageOther" type="text" class="dfinput" value=""  id="fangyan" style="display:none;" placeholder="地区方言填写"/>
+                        <script type="text/javascript">
+                        $(function() {
+                            $("#language").change(function(){
+                                var value=$(this).val();
+                                $("#fangyan").val("");
+                                if(value==2){
+                                    $("#fangyan").show();
+                                }
+                                else{
+                                    $("#fangyan").hide();
+                                    }
+
+                            });
+                            $("#sex").change();
+                        });
+                        </script>
+                    </li>
+
+                    <li class="li_long"><label>17.家属人员</label>
+                      <label style="width:70px;">(1) 配偶</label>
+                      <div class="cityleft">
+                        <select name="familyMbersType" class="select2" id="peiou">
+                          <option value="">请选择</option>
+                            <option value="1" >有</option>
+                            <option value="2">无</option>
+                        </select>
+                        </div>
+                        <cite id="poxm" style="display: none;">
+                        &nbsp;配偶姓名<b>*</b>&nbsp;&nbsp;<input id="loverName"  name="familyMbersSpouse" type="text" class="dfinput"  value="" placeholder="" style="width:80px;" />
+                        </cite>
+                        <script type="text/javascript">
+                        $(function() {
+                            $("#peiou").change(function(){
+                                var value=$(this).val();
+                                if(value==1){
+                                    $("#poxm").show();
+                                    $("input[name='familyMbersSpouse']").focus();
+                                }
+                                else{
+                                  document.getElementById('loverName').value="";
+                                    $("#poxm").hide();
+                                    }
+
+                            });
+                        });
+                        </script>
+
+                    </li>
+
+                    <li class="li_long"><label> <b></b></label>
+                      <cite>
+                     (2) 尚在父母兄弟姐妹数&nbsp;&nbsp;<input name="familyMbersSisterNum" type="text" class="dfinput t_input" placeholder=""  value="0" />&nbsp;
+                            子女人数&nbsp;&nbsp;<input name="familyMbersChildNum" type="text" class="dfinput t_input" placeholder="" value="0" />&nbsp;
+                            孙辈人数&nbsp;&nbsp;<input name="familyMbersGsonNum" type="text" class="dfinput t_input" placeholder=""  value="0"/>
+                        </cite>
+                    </li>
+
+                    <li class="li_long"><label>18.和谁在一起居住</label>
+                        <div class="cityleft">
+                        <select name="livesTogether" class="select2" id="jzqk">
+                          <option value="">请选择</option>
+                            <option value="1">独居</option>
+                            <option value="2">非独居</option>
+                        </select>
+                        </div>
+                        <cite id="fdj" style="display:none;">
+                            <input name="livesTogetherPeople" value="1" type="radio">配偶&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="livesTogetherPeople" value="2" type="radio">子女及其配偶&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="livesTogetherPeople" value="3" type="radio">孙辈及其配偶&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="livesTogetherPeople" value="4" type="radio">保姆等其他非亲属&nbsp;&nbsp;&nbsp;&nbsp;
+                        </cite>
+                        <script type="text/javascript">
+                        $(function() {
+                            $("#jzqk").change(function(){
+                                var value=$(this).val();
+                                if(value==2){
+                                    $("#fdj").show();
+                                }
+                                else{
+                                    $("#fdj").hide();
+                                    }
+
+                            });
+                        });
+                        </script>
+                    </li>
+
+                    <li class="li_long"><label>19.照护人员</label>
+                        <div class="cityleft">
+                        <select name="careWorkers" class="select2" id="zhry">
+                          <option value="">请选择</option>
+                            <option value="1">不需要</option>
+                            <option value="2">需要</option>
+                        </select>
+                        </div>
+                        <cite style="display:none" id="xyzh">
+                            <input name="careWorkersOther" value="1" type="radio">无&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="careWorkersOther" value="2" type="radio">配偶&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="careWorkersOther" value="3" type="radio">子女及其配偶&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="careWorkersOther" value="4" type="radio">孙辈及其配偶&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="careWorkersOther" value="5" type="radio">保姆等其他非亲属
+                        </cite>
+                        <script type="text/javascript">
+                        $(function() {
+                            $("#zhry").change(function(){
+                                var value=$(this).val();
+                                if(value==2){
+                                    $("#xyzh").show();
+                                }
+                                else{
+                                    $("#xyzh").hide();
+                                    }
+
+                            });
+                        });
+                        </script>
+                    </li>
+                    <li class="li_long"><label class="tt_auto">20.所有亲属中，与评估对象距离最近的居住在</label>
+                      <div class="vocation">
+                        <select name="relativesLiveTogether" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1">同一街道</option>
+                            <option value="2">同一区县</option>
+                            <option value="3">同一城市</option>
+                            <option value="4">外省市</option>
+                            <option value="5">境外</option>
+                            <option value="6">没有亲属</option>
+                        </select>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="forminfo forminfo-3">
+                    <li><label>21. 居住楼层</label>
+                        <cite>
+                           第 <input name="floorCurr" type="text" class="dfinput t_input" value="" /> 层,共 <input name="floorTotal" type="text" class="dfinput t_input" value="" /> 层
+                        </cite>
+                    </li>
+
+                    <li><label>22. 楼层有无电梯</label>
+                        <div class="vocation">
+                        <select name="haveElevator" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1">有</option>
+                            <option value="2">无</option>
+                        </select>
+                        </div>
+                    </li>
+
+                    <li><label>23. 室内有无台阶</label>
+                        <div class="vocation">
+                        <select name="haveSteps" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1">有</option>
+                            <option value="2">无</option>
+                        </select>
+                        </div>
+                    </li>
+
+                    <li><label>24. 室内有无助老化改造</label>
+                        <div class="vocation">
+                        <select name="indoorChange" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1">有</option>
+                            <option value="2">无</option>
+                        </select>
+                        </div>
+                    </li>
+
+                    <li><label>25. 厕所</label>
+                        <div class="vocation">
+                        <select name="toilet" class="select2">
+                          <option value="">请选择</option>
+                            <option value="1" >独用</option>
+                            <option value="2" >合用</option>
+                            <option value="3" >无</option>
+                        </select>
+                        </div>
+                    </li>
+
+                    <li><label>26. 洗浴设备</label>
+                        <div class="vocation">
+                        <select class="select2" name="bathEquipment">
+                          <option value="">请选择</option>
+                            <option value="1">独用</option>
+                            <option value="2">合用</option>
+                            <option value="3">无</option>
+                        </select>
+                        </div>
+                    </li>
+
+                    <li class="li_long"><label>27.最近3个月,居住地址是否改变</label>
+                        <div class="vocation">
+                        <select name="addressChange" class="select2" id="dz">
+                          <option value="">请选择</option>
+                            <option value="1">没有改变</option>
+                            <option value="2">改变</option>
+                        </select>
+                        </div>
+                        <cite style=" display:none;" id="dzgb">
+                         &nbsp;&nbsp;&nbsp;&nbsp;来自何处 <input name="addressChangeOther" type="text" class="dfinput t_input" value="" style="width:335px;" />
+                        </cite>
+                        <script type="text/javascript">
+                        $(function() {
+                            $("#dz").change(function(){
+                                var value=$(this).val();
+                                if(value==2){
+                                    $("#dzgb").show();
+                                }
+                                else{
+                                    $("#dzgb").hide();
+                                    }
+
+                            });
+                        });
+                        </script>
+                    </li>
+                  </ul>
+
+                <ul class="forminfo forminfo-4">
+
+                  <li class="li_long"><label></label>
+                    <cite>
+                      28.在过去的3个月，每月不支付费用的照护情况（不包括非服务时间）
+                    </cite>
+                  </li>
+
+
+                  <li class="li_long"><label></label>
+                    <cite>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;各类非付费照护提供人数：&nbsp;<input name="nurseNoPayPerson" type="text" class="dfinput t_input"
+                        value="" />；
+                      累计时间：&nbsp;<input name="nurseNoPayTimes" type="text" class="dfinput t_input" value="" />小时/月；
+
+                    </cite>
+                  </li>
+
+                  <li class="li_long"><label></label>
+                    <cite>
+                      29.在过去的3个月，每月要支付费用的照护情况（不包括非服务时间）
+                    </cite>
+                  </li>
+
+
+                  <li class="li_long"><label></label>
+                    <cite>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;各类要付费照护提供人数：&nbsp;<input name="nursePayPerson" type="text" class="dfinput t_input"
+                        value="" />；
+                      累计时间：&nbsp;<input name="nursePayTimes" type="text" class="dfinput t_input" value="" />小时/月；
+                      支付费用：&nbsp;<input name="nursePayMoney" type="text" class="dfinput t_input" value="" />元/月
+                    </cite>
+                  </li>
+
+                </ul>
+
+
+              </div>
+              <div class="save_bar ">
+                  <input id="update" name="update" type="hidden" value="0"/>
+                  <a href="javascript:history.back();" class="btn">上一步</a>
+                  <input name="nextStep" type="button" class="btn" value="下一步" onclick="submitStep()"/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footercontainer"></div>
+    <script
+      src="./script/thirdplugins/bootstrap.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="./script/thirdplugins/jquery.cookie.js" type="text/javascript"></script>
+    <script src="./script/js/index.js" type="text/javascript"></script>
+    <script>
+    var provinceHtml;
+    var oldOrderNo='';
+    // var queryUrl = "http://192.168.1.16:9008/insurance-intact-web/";
+        window.onload = function () {
+            setTimeout(function () {
+            $('.topnavbarright li:nth-child(2)').addClass('current').siblings().removeClass('current');
+          }, 100);
+            if($.cookie('isReAccess')==1){
+              oldOrderNo=$.cookie('oldOrderNo');
+            }else{
+              oldOrderNo='';
+            }
+          $.get(queryUrl+"/get_provinces", function getProvinces(list) {
+            provinceHtml = "";
+
+            for (var i = 0; i < list.length; i++) {
+              provinceHtml += "<option value='" + list[i].regionId + "-" + list[i].regionName + "'>" + list[i].regionName + "</option>";
+            }
+            $("select[name='residentialProvince']").html(provinceHtml);
+            $("select[name='residentialProvince']").val("337-浙江省");
+            $("select[name='residentialProvince']").change();
+            // $("input[name='regionCity']").val("金华市");
+            // $("input[name='regionDistrict']").val("义乌市");
+            // $("input[name='regionStreetName']").val("大陈镇");
+            // $("input[name='regionStreetId']").val("");
+
+          });
+          $("select[name='residentialProvince']").on("change", function () {
+            var parentDiv = $(this).parent().parent();
+            if($(this).val()){
+              parentDiv.find("input[name='regionProvince']").val($(this).val().split('-')[1]);
+            }
+            $.get(queryUrl+"/get_regions?parentId="+$(this).val().split("-")[0], function rg(list) {
+              parentDiv.find("select[name='residentialCity']").html("");
+              var html = "";
+              for (var i = 0; i < list.length; i++) {
+                html += "<option value='" + list[i].regionId + "-" + list[i].regionName + "'>" + list[i].regionName + "</option>";
+              }
+              parentDiv.find("select[name='residentialCity']").html(html);
+              var cityTemp = parentDiv.find("select[name='residentialCity']").find("option:contains('" + parentDiv.find("input[name='regionCity']").val() + "')").val();
+              parentDiv.find("select[name='residentialCity']").val(cityTemp == null ? $("select[name='residentialCity'] option:first").val() : cityTemp);
+              parentDiv.find("select[name='residentialCity']").change();
+
+            });
+          });
+        $("select[name='residentialCity']").on("change", function () {
+            var parentDiv = $(this).parent().parent();
+            if($(this).val()){
+              parentDiv.find("input[name='regionCity']").val($(this).val().split('-')[1]);
+            }
+            $.get(queryUrl+"/get_regions?parentId="+$(this).val().split("-")[0], function rg(list) {
+              parentDiv.find("select[name='residentialDistrict']").html("");
+              var html = "";
+              for (var i = 0; i < list.length; i++) {
+                html += "<option value='" + list[i].regionId + "-" + list[i].regionName + "'>" + list[i].regionName + "</option>";
+              }
+              parentDiv.find("select[name='residentialDistrict']").html(html);
+              var districtTemp = parentDiv.find("select[name='residentialDistrict']").find("option:contains('" + parentDiv.find("input[name='regionDistrict']").val() + "')").val();
+              console.log(districtTemp)
+              parentDiv.find("select[name='residentialDistrict']").val(districtTemp == null ? $("select[name='residentialDistrict'] option:first").val() : districtTemp);
+              parentDiv.find("select[name='residentialDistrict']").change();
+            });
+          });
+
+        $("select[name='residentialDistrict'").on("change",function(){
+          console.log($(this).val());
+          var parentDiv = $(this).parent().parent();
+          if($(this).val()){
+            parentDiv.find("input[name='regionDistrict']").val($(this).val().split('-')[1]);
+          }
+          // $.get(`${queryUrl}/get_regions?parentId=${$(this).val().split("-")[0]}`, function rg(list) {
+            // parentDiv.find("select[name='residentialStreet']").html("");
+            //   var html = "";
+            //   for (var i = 0; i < list.length; i++) {
+            //     html += "<option value='" + list[i].regionId + "-" + list[i].regionName + "'>" + list[i].regionName + "</option>";
+            //   }
+            //   parentDiv.find("select[name='residentialStreet']").html(html);
+            //   var streetTemp = parentDiv.find("select[name='residentialStreet']").find("option:contains('" + parentDiv.find("input[name='residentialStreet']").val() + "')").val();
+            //   parentDiv.find("select[name='residentialStreet']").val(districtTemp == null ? $("select[name='residentialStreet'] option:first").val() : districtTemp);
+            //   console.log(streetTemp);
+          // });
+        });
+
+          }
+          function getNameAge(fullName, idCard) {
+            var birthYear = idCard.slice(6, 10);
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var age = (+currentYear) - (+birthYear);
+            $('#fullName').attr('value', fullName);
+            $('#age').attr('value', age);
+            $('#idcard').attr('value', idCard);
+            if((idCard.charAt(idCard.length-2)%2)==1){
+              document.getElementById("sex")[1].selected=true;
+            }else{
+              document.getElementById("sex")[2].selected=true;
+            }
+          }
+
+          if ($.cookie('access_apply_fullname') && $.cookie('access_apply_idcard')) {
+            getNameAge($.cookie('access_apply_fullname'), $.cookie('access_apply_idcard'));
+          } else {
+            tip('未获取到姓名和身份证号');
+            setTimeout(function () { window.location.href = "./access_apply_one.html"; }, 3000);
+          }
+
+          function validate() {
+            if (!$("#qtdb").is(':hidden') && $("#qtdb").val() == "") {
+              tip("第9选项：是否为“低保人群”为其它，其后文本框为必填!");
+              $("#qtdb").focus();
+              return false;
+            }
+            if (!$("#qtsd").is(':hidden') && $("#qtsd").val() == "") {
+              tip("第9选项：是否为“失独”家庭为其它，其后文本框为必填!");
+              $("#qtsd").focus();
+              return false;
+            }
+            if (!$("#fangyan").is(':hidden') && $("#fangyan").val() == "") {
+              tip("常用语言为方言，其后文本框为必填!");
+              $("#fangyan").focus();
+              return false;
+            }
+            if (!$("#qthj").is(':hidden') && $("#qthj").val() == "") {
+              tip("户籍情况为其它，其后文本框为必填!");
+              $("#qthj").focus();
+              return false;
+            }
+
+            var height = $("input[name='height']").val();
+            var weight = $("input[name='weight']").val();
+
+            var familyMbersSisterNum = $("input[name='familyMbersSisterNum']").val();
+            var familyMbersChildNum = $("input[name='familyMbersChildNum']").val();
+            var familyMbersGsonNum = $("input[name='familyMbersGsonNum']").val();
+
+            var floorCurr = $("input[name='floorCurr']").val();
+            var floorTotal = $("input[name='floorTotal']").val();
+
+            var nurseNoPayPerson = $("input[name='nurseNoPayPerson']").val();
+            var nurseNoPayTimes = $("input[name='nurseNoPayTimes']").val();
+            var nursePayPerson = $("input[name='nursePayPerson']").val();
+            var nursePayTimes = $("input[name='nursePayTimes']").val();
+            var nursePayMoney = $("input[name='nursePayMoney']").val();
+
+            var reg = /^[0-9]+.?[0-9]*$/;
+            if (height != "" && !reg.test(height)) {
+              alert("身高项目中请输入正确的数字格式");
+              return false;
+            }
+            if (weight != "" && !reg.test(weight)) {
+              alert("体重项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (familyMbersSisterNum != "" && !reg.test(familyMbersSisterNum)) {
+              alert("尚在父母兄弟姐妹数项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (familyMbersChildNum != "" && !reg.test(familyMbersChildNum)) {
+              alert("子女人数项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (familyMbersGsonNum != "" && !reg.test(familyMbersGsonNum)) {
+              alert("孙辈人数项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (floorCurr != "" && !reg.test(floorCurr)) {
+              alert("居住楼层项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (floorTotal != "" && !reg.test(floorTotal)) {
+              alert("居住楼层项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (nurseNoPayPerson != "" && !reg.test(nurseNoPayPerson)) {
+              alert("各类非付费照护提供人数项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (nurseNoPayTimes != "" && !reg.test(nurseNoPayTimes)) {
+              alert("累计时间项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (nursePayPerson != "" && !reg.test(nursePayPerson)) {
+              alert("各类要付费照护提供人数项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (nursePayTimes != "" && !reg.test(nursePayTimes)) {
+              alert("累计时间项目中请输入正确的数字格式");
+              return false;
+            }
+
+            if (nursePayMoney != "" && !reg.test(nursePayMoney)) {
+              alert("支付费用项目中请输入正确的数字格式");
+              return false;
+            }
+            return true;
+          }
+
+          function submitStep() {
+            var idCard=$('#idcard').val();
+            if (!validate()) {
+              return;
+            }
+
+            if ($.cookie('loginName')) {
+              var arry = $("#formHomeInfo").serializeArray();
+              // var arry = $("#formHomeInfo").serialize();
+              console.log(arry);
+              var obj = {};
+              for (var i = 0; i < arry.length; i++) {
+                obj[arry[i].name] = arry[i].value;
+              }
+              var uuid=$.cookie('_PRE_UUID_');
+              console.log(oldOrderNo);
+              if(uuid){
+                  $.ajax({
+                  type: 'POST',
+                  url: queryUrl+"/auth/familyInfo?curPreId="+uuid+"&oldOrderNo="+oldOrderNo,
+                  contentType: "application/json; charset=utf-8",
+                  data: JSON.stringify(obj),
+                  dataType: "json",
+                  xhrFields: {
+                      withCredentials: true
+                    },
+                    crossDomain: true
+                }).done(function (res) {
+                  if (res.data&&res.resultCode=='000000') {
+                    // $.cookie('isReAccess',null,{expires:-1,path:'/'});
+                    // $.cookie('oldOrderNo',null,{expires:-1,path:'/'});
+                    window.location.href='./access_apply_three.html?insIdCard='+idCard;
+                  } else if (res.errorCode == '1305') {
+                    tip(res.errorMsgs[0]);
+                  } else {
+                    tip(res.resultMsg);
+                    // tip(res.errorMsgs[0] + ",一共 " + (res.totalNums) + " 项，还有 " + (res.totalNums - res.completedNums) + " 未完成");
+                  }
+                });
+              }else{
+                tip('违规操作！');
+                setTimeout(function(){
+                  window.location.href='./access_apply_one.html';
+                },2000)
+              }
+
+            } else {
+              location.reload();
+            }
+          }
+    </script>
+  </body>
+</html>
